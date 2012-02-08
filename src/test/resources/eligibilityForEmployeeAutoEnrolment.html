@@ -6,29 +6,34 @@
 <p>Auto enrolment age criteria 22 - 65 years</p>
 
 <p></p>
-<table border="1" concordion:execute="#status = compute(#name,#salary)">
+<table border="1" concordion:execute="#status = compute(#name,#age, #salary)">
     <tr>
         <th concordion:set="#name">Name</th>
+        <th concordion:set="#age">Age</th>
         <th concordion:set="#salary">Salary</th>
         <th concordion:assertEquals="#status">Eligibility status</th>
     </tr>
     <tr>
         <td>Suresh Sharma</td>
+        <td>23</td>
         <td>27000</td>
         <td>Eligible</td>
     </tr>
     <tr>
         <td>Shubh Sharma</td>
+        <td>20</td>
         <td>7000</td>
         <td>Not Eligible</td>
     </tr>
     <tr>
         <td>Ben Brown</td>
+        <td>65</td>
         <td>327000</td>
         <td>Eligible</td>
     </tr>
     <tr>
         <td>Siby George</td>
+        <td>32</td>
         <td>427000</td>
         <td>Eligible</td>
     </tr>
