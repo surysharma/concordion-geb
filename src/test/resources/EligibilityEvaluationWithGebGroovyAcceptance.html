@@ -1,0 +1,95 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <style type="text/css" src="">
+            body, table {
+                font-family: Georgia, Arial, FreeSans, sans-serif;
+                font-size: 16px;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin-left: 40px;
+            }
+
+            th {
+                background-color: #99CCCC;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+
+            h1, h2, h3, h4 {
+                color: #1E59A6;
+                margin-left: 40px;
+            }
+
+            .configuration th, .configuration td {
+                border: none;
+                background-color: #ffffff;
+                text-align: center;
+            }
+
+            .dataSpecification {
+                margin: 40px;
+                padding: 10px;
+                font-size: 20px;
+                line-height: 140%;
+                background-color: #c9e359;
+            }
+
+            li {
+                font-size: 20px;
+                line-height: 140%;
+            }
+        </style>
+
+        <title>Auto-Enrolment Eligibility Evaluation</title>
+    </head>
+    <body>
+
+        <h1>Auto-Enrol Eligibility Evaluation</h1>
+        <h1 class="dataSpecification">*****groovy******</h1>
+
+        <div class="dataSpecification">
+            Employee's eligibility for auto-enrolment is determined by a combination of age and relevant earnings.
+            <ul>
+                <li>Age: between 22 and 65 inclusive.</li>
+                <li>Relevant Earnings: exceeding the monthly trigger point of £675.42</li>
+            </ul>
+        </div>
+
+        <table concordion:execute="isEmployeeEligible(#age, #basicSalary, #ni)">
+            <thead>
+                <tr>
+                    <th colspan="3"/>
+                    <th>Monthly Relevant Earnings</th>
+                    <th colspan="3"/>
+                </tr>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th concordion:set="#age">Age</th>
+                    <th concordion:set="#basicSalary">Basic Salary</th>
+                    <th>Eligibility</th>
+                    <th concordion:set="#ni">Ni Number</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Flash</td>
+                    <td>Gordon</td>
+                    <td>25</td>
+                    <td>4000</td>
+                    <td>Eligible</td>
+                    <td>TN108553A</td>
+                    <td>Age and Salary both eligible</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>
