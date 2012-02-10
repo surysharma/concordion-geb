@@ -9,11 +9,11 @@
     <version>1.0</version>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.concordion</groupId>-->
-            <!--<artifactId>concordion</artifactId>-->
-            <!--<version>1.4.2</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.concordion</groupId>
+            <artifactId>concordion</artifactId>
+            <version>1.4.2</version>
+        </dependency>
         <dependency>
             <groupId>org.codehaus.geb</groupId>
             <artifactId>geb-core</artifactId>
