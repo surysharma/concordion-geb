@@ -36,5 +36,6 @@ Browser.drive(baseUrl: "http://localhost:8080",driver: new FirefoxDriver()) {
     assert autoEnrollButton.size() == 1
 
     autoEnrollButton.click()
+    
 
 }.quit()

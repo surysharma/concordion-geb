@@ -17,7 +17,7 @@
         <th>NI Number</th>
     </tr>
     </thead>
-    <form name="inputfrm" action="http://google.co.uk" method="POST">
+    <form name="inputfrm" action="/testwebapp/home/result" method="POST">
 
         <tr>
             <td><input type="radio"/></td>
