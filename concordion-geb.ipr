@@ -439,6 +439,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/1.8.5/groovy-all-1.8.5-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.concordion:concordion-extensions:1.1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/concordion/concordion-extensions/1.1.0/concordion-extensions-1.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/concordion/concordion-extensions/1.1.0/concordion-extensions-1.1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/concordion/concordion-extensions/1.1.0/concordion-extensions-1.1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.concordion:concordion:1.4.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/concordion/concordion/1.4.2/concordion-1.4.2.jar!/" />

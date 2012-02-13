@@ -5,8 +5,11 @@ import org.junit.Before
 import org.junit.runner.RunWith
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
+import org.concordion.api.extension.Extensions
+import org.concordion.ext.LoggingTooltipExtension
 
 @RunWith(ConcordionRunner.class)
+@Extensions(LoggingTooltipExtension.class)
 class EligibilityEvaluationWithGebGroovyAcceptanceTest {
     Browser browser = new Browser();
     String url = "http://localhost:8080"
@@ -20,9 +23,9 @@ class EligibilityEvaluationWithGebGroovyAcceptanceTest {
         browser.go("/company/home.html?id=158")
         browser.$("#employeeSection a", title: "List Employees").click()
 
-
         def tableRows = browser.$("table tbody tr")
         boolean radioButtonClicked = false
+        def isEmployeeEligible = "Non Eligible"
         for (def tr: tableRows) {
 
             def radioButton = tr.find("td")[0]
@@ -38,28 +41,36 @@ class EligibilityEvaluationWithGebGroovyAcceptanceTest {
             println "dob: $dob"
             def date = new Date(dob).format('dd MMM yyyy')
 
-            new GregorianCalendar()
+            Calendar.getInstance()
 
             if (surname.trim() == expectedSurname.trim()
-                && firstName.trim() == expectedFirstName.trim()
-            ) {
-
+                    && firstName.trim() == expectedFirstName.trim())
+            {
                 radioButtonClicked = true
                 radioButton.click()
+                def autoEnrolButton = browser.$('#buttons a', onclick: "goURL('/employee/autoenrol/enrol.html', true, false);")
+                assert autoEnrolButton.size() == 1
+
+                autoEnrolButton.click()
+                def enrolmentStatus = browser.$("h1", text: "Auto-enrolment")
+                assert enrolmentStatus.size() > 0
+
+                def text = browser.$("#mainpage").text()
+                println text
+                if (text.find('has been auto-enrolled into a pension')?.size() > 0) {
+                    isEmployeeEligible = "Eligible"
+                }
+
+                if (text.find('has NOT been auto-enrolled into a pension')?.size() > 0) {
+                    isEmployeeEligible = "Non Eligible"
+                }
                 break
             }
         }
 
-        if (radioButtonClicked) {
-            def autoEnrolButton = browser.$('#buttons a', onclick: "goURL('/employee/autoenrol/enrol.html', true, false);")
-            assert autoEnrolButton.size() == 1
-            
-            autoEnrolButton.click()
-        }
-
-
-        return "Eligible"
+        return isEmployeeEligible
     }
+
 
     private void login() {
         browser = new Browser()
@@ -73,6 +84,6 @@ class EligibilityEvaluationWithGebGroovyAcceptanceTest {
 
     @After
     public void tear() {
-        browser.close()
+//        browser.close()
     }
 }
