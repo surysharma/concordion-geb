@@ -22,7 +22,8 @@ class EligibilityEvaluationWithGebGroovyAcceptanceTest {
 
 
         def tableRows = browser.$("table tbody tr")
-        tableRows.find { tr ->
+        boolean radioButtonClicked = false
+        for (def tr: tableRows) {
 
             def radioButton = tr.find("td")[0]
             println radioButton
@@ -35,15 +36,25 @@ class EligibilityEvaluationWithGebGroovyAcceptanceTest {
 
             def dob = tr.find("td")[3].text()
             println "dob: $dob"
+            def date = new Date(dob).format('dd MMM yyyy')
+
+            new GregorianCalendar()
 
             if (surname.trim() == expectedSurname.trim()
                 && firstName.trim() == expectedFirstName.trim()
             ) {
+
+                radioButtonClicked = true
                 radioButton.click()
-                //TODO: Should exit closure once the radio button is clicked. But How?
+                break
             }
+        }
 
-
+        if (radioButtonClicked) {
+            def autoEnrolButton = browser.$('#buttons a', onclick: "goURL('/employee/autoenrol/enrol.html', true, false);")
+            assert autoEnrolButton.size() == 1
+            
+            autoEnrolButton.click()
         }
 
 
