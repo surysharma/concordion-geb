@@ -61,7 +61,7 @@
             </ul>
         </div>
 
-        <table concordion:execute="isEmployeeEligible(#age, #basicSalary, #ni)">
+        <table concordion:execute="#result = isEmployeeEligible(#firstName, #surName, #age, #basicSalary)">
             <thead>
                 <tr>
                     <th colspan="3"/>
@@ -69,23 +69,21 @@
                     <th colspan="3"/>
                 </tr>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Surname</th>
+                    <th concordion:set="#firstName">Firstname</th>
+                    <th concordion:set="#surName">Surname</th>
                     <th concordion:set="#age">Age</th>
                     <th concordion:set="#basicSalary">Basic Salary</th>
-                    <th>Eligibility</th>
-                    <th concordion:set="#ni">Ni Number</th>
+                    <th concordion:assertEquals="#result">Eligibility</th>
                     <th>Comment</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Flash</td>
-                    <td>Gordon</td>
+                    <td>A</td>
+                    <td>Smith108553</td>
                     <td>25</td>
                     <td>4000</td>
                     <td>Eligible</td>
-                    <td>TN108553A</td>
                     <td>Age and Salary both eligible</td>
                 </tr>
             </tbody>
